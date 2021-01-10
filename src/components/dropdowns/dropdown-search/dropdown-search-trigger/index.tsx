@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import cn from "classnames";
-import onBlurMenu from "../on-blur-menu";
+import onBlurMenu from "../../common/on-blur-menu";
 import { InputEvent } from "../../../../constants/types.constants";
 import s from "./dropdown-search-trigger.module.scss";
 

@@ -1,0 +1,25 @@
+@import "../../../../assets/styles/entry.scss";
+
+.option {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  display: flex;
+  align-items: center;
+  min-height: $ui-height-s;
+  padding: 0 16px;
+  outline: none;
+  &:not(:last-child) {
+    border-bottom: 1px solid $lightgray;
+  }
+  &:hover {
+    background-color: $hover-color;
+  }
+  &:focus {
+    @include inner-focus(2px);
+  }
+}
+
+.active {
+  font-weight: 600;
+}

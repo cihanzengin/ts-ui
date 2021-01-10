@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import cn from "classnames";
-import onBlurMenu from "../on-blur-menu";
+import onBlurMenu from "../../common/on-blur-menu";
 import s from "./dropdown-trigger.module.scss";
 
 interface IDropdownTriggerProps {

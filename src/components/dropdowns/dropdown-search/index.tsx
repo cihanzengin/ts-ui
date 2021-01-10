@@ -1,11 +1,13 @@
 import React, { useState, useRef } from "react";
 import cn from "classnames";
-import DropdownTrigger from "./dropdown-trigger";
-import DropdownMenu from "./dropdown-menu";
-import DropdownSelected from "./dropdown-selected";
-import s from "./dropdown.module.scss";
+import DropdownSearchTrigger from "./dropdown-search-trigger";
+import DropdownSearchMenu from "./dropdown-search-menu";
+import DropdownSelected from "../common/dropdown-selected";
+import { searchOptions } from "./functions.helper";
+import { InputEvent } from "../../../constants/types.constants";
+import s from "./dropdown-search.module.scss";
 
-interface IDropdownProps {
+interface IDropdownSearchProps {
   name: string;
   options: string[];
   onSelect: (a: string) => void;
@@ -15,52 +17,56 @@ interface IDropdownProps {
   label?: string;
   isMultiple?: boolean;
   scrollRef?: React.RefObject<HTMLDivElement>;
+  onSearch: (e: InputEvent) => void;
+  searchValue?: string;
 }
 
-const Dropdown: React.FC<IDropdownProps> = ({
+const DropdownSearch = ({
   options,
   isMultiple,
+  onSearch,
   onSelect,
+  searchValue,
   name,
   label,
   placeholder,
   scrollRef,
   className,
   selected,
-}) => {
-  const triggerRef = useRef<HTMLDivElement>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
+}: IDropdownSearchProps) => {
+  const triggerRef = useRef(null);
+  const menuRef = useRef(null);
   const [isOpen, toggleOpen] = useState(false);
+
   return (
     <div className={cn(s.wrap, className)}>
-      <DropdownTrigger
-        name={name}
+      <DropdownSearchTrigger
+        ref={triggerRef}
         label={label}
+        name={name}
+        onSearch={onSearch}
         placeholder={placeholder}
         toggleOpen={toggleOpen}
         isOpen={isOpen}
-        ref={triggerRef}
-        selected={selected}
         menuRef={menuRef}
-        isMultiple={isMultiple}
       />
-      <DropdownMenu
-        isOpen={isOpen}
+      <DropdownSearchMenu
         ref={menuRef}
+        selected={selected}
         triggerRef={triggerRef}
         onSelect={onSelect}
         isMultiple={isMultiple}
-        options={options}
+        options={searchOptions(searchValue || '', options)}
         toggleOpen={toggleOpen}
         scrollRef={scrollRef}
-        selected={selected}
+        isOpen={isOpen}
       >
         {isMultiple && (
           <DropdownSelected unselect={onSelect} selected={selected} />
         )}
-      </DropdownMenu>
+      </DropdownSearchMenu>
     </div>
   );
 };
 
-export default Dropdown;
+export default DropdownSearch;

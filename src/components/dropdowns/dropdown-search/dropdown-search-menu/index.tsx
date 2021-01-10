@@ -1,10 +1,9 @@
 import React, { useRef, forwardRef, createRef } from "react";
 import cn from "classnames";
-import useMenuCloseListener from "./use-menu-close-listener";
-import useMenuPosition from "./use-menu-position";
-import onBlurMenu from "../on-blur-menu";
-import DropdownCheckbox from "../dropdown-checkbox";
-import s from "./dropdown-menu.module.scss";
+import DropdownOption from "../../common/dropdown-option";
+import useMenuCloseListener from "../../common/use-menu-close-listener";
+import useMenuPosition from "../../common/use-menu-position";
+import s from "./dropdown-search-menu.module.scss";
 
 interface IDropdownMenuProps {
   onSelect: (a: string) => void;
@@ -15,13 +14,12 @@ interface IDropdownMenuProps {
   isMultiple?: boolean;
   scrollRef?: React.RefObject<HTMLDivElement>;
   children: React.ReactNode;
-  selected: string[]
+  selected: string[];
 }
 
-const DropdownMenu = forwardRef<HTMLDivElement, IDropdownMenuProps>(
+const DropdownSearchMenu = forwardRef<HTMLDivElement, IDropdownMenuProps>(
   (
     {
-      isOpen,
       isMultiple,
       onSelect,
       options,
@@ -30,6 +28,7 @@ const DropdownMenu = forwardRef<HTMLDivElement, IDropdownMenuProps>(
       scrollRef,
       children,
       selected,
+      isOpen,
     },
     ref
   ) => {
@@ -58,31 +57,17 @@ const DropdownMenu = forwardRef<HTMLDivElement, IDropdownMenuProps>(
                 <span className={s.empty}>No results</span>
               ) : (
                 options.map((option, i) => (
-                  <button
-                    key={option}
+                  <DropdownOption
                     ref={optionsRef.current[i]}
-                    type="button"
-                    className={cn(s.option, {
-                      [s.active]: selected.includes(option),
-                    })}
-                    onClick={() => {
-                      onSelect(option);
-                      if (!isMultiple) toggleOpen(false);
-                    }}
-                    onBlur={() =>
-                      i === options.length - 1
-                        ? onBlurMenu({
-                            menuRef: ref,
-                            toggleOpen,
-                          })
-                        : null
-                    }
-                  >
-                    {isMultiple && (
-                      <DropdownCheckbox isActive={selected.includes(option)} />
-                    )}
-                    {option}
-                  </button>
+                    option={option}
+                    options={options}
+                    onSelect={onSelect}
+                    toggleOpen={toggleOpen}
+                    isActive={selected.includes(option)}
+                    isMultiple={isMultiple}
+                    index={i}
+                    menuRef={ref}
+                  />
                 ))
               )}
             </div>
@@ -94,4 +79,4 @@ const DropdownMenu = forwardRef<HTMLDivElement, IDropdownMenuProps>(
   }
 );
 
-export default DropdownMenu;
+export default DropdownSearchMenu;

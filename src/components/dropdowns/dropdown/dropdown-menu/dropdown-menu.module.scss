@@ -1,0 +1,27 @@
+@import "../../../../assets/styles/entry.scss";
+
+.reverse {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.wrap {
+  z-index: 1;
+  position: relative;
+}
+
+.empty {
+  padding: 8px 16px;
+  @include h4();
+}
+
+.options {
+  @include dd-options();
+}
+
+.upward {
+  .options {
+    bottom: calc(100% + 44px);
+    top: auto;
+  }
+}

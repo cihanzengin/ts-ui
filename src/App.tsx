@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Dropdown from "./components/inputs/dropdown";
-import DropdownSearch from "./components/inputs/dropdown-search";
+import Dropdown from "./components/dropdowns/dropdown";
+import DropdownSearch from "./components/dropdowns/dropdown-search";
 import { InputEvent } from "./constants/types.constants";
 import s from "./app.module.scss";
 
@@ -37,7 +37,7 @@ function App() {
         isMultiple
         onSelect={(option) => onSelectMultiple(option)}
       />
-      <DropdownSearch
+      {/* <DropdownSearch
         label="Dropdown search"
         placeholder="Dropdown test placeholder"
         name="dropdownSearchTest"
@@ -46,7 +46,7 @@ function App() {
         isMultiple
         onSelect={(option) => onSelectMultiple(option)}
         onSearch={onSearch}
-      />
+      /> */}
     </div>
   );
 }
