@@ -1,0 +1,135 @@
+@mixin h1($font-weight: 500) {
+  font-size: 70px;
+  line-height: 120%;
+  font-weight: $font-weight;
+  letter-spacing: 0.8px;
+  @include max-vw($xxl) {
+    font-size: 60px;
+  }
+
+  @include max-vw($xl) {
+    font-size: 55px;
+  }
+
+  @include max-vw($lg) {
+    font-size: 45px;
+  }
+
+  @include max-vw($md) {
+    font-size: 35px;
+  }
+
+  @include max-vw($sm) {
+    line-height: 130%;
+    font-size: 30px;
+  }
+}
+
+@mixin h2($font-weight: 500) {
+  font-size: 35px;
+  line-height: 140%;
+  font-weight: $font-weight;
+
+  @include max-vw($xxl) {
+    font-size: 32px;
+  }
+
+  @include max-vw($hd) {
+    font-size: 28px;
+  }
+
+  @include max-vw($md) {
+    font-size: 25px;
+  }
+
+  @include max-vw($sm) {
+    font-size: 22px;
+  }
+}
+
+@mixin h3($font-weight: 400) {
+  font-size: 20px;
+  line-height: 140%;
+  font-weight: $font-weight;
+
+  @include max-vw($hd) {
+    font-size: 19px;
+  }
+}
+
+@mixin h4($font-weight: 500) {
+  font-size: 16px;
+  line-height: 140%;
+  font-weight: $font-weight;
+}
+
+@mixin text($font-weight: 300) {
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: $font-weight;
+}
+
+@mixin caption-m($font-weight: 800) {
+  font-size: 12px;
+  line-height: 140%;
+  font-weight: $font-weight;
+  text-transform: uppercase;
+}
+
+@mixin caption-s($font-weight: 800) {
+  font-size: 11px;
+  line-height: 140%;
+  font-weight: $font-weight;
+  text-transform: uppercase;
+}
+
+@mixin li() {
+  @include text();
+  position: relative;
+  padding-left: 20px;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  &:before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background-color: var(--text-color);
+    transition: background-color $speed;
+    position: absolute;
+    border-radius: 50%;
+    top: 11px;
+    left: 0;
+  }
+
+  @include max-vw($sm) {
+    padding-left: 0;
+    &:before {
+      display: none;
+    }
+  }
+
+  @media print {
+    padding-left: 0;
+    &:before {
+      display: none;
+    }
+  }
+}
+
+@mixin inputLabel() {
+  @include h4();
+  color: $accent;
+  margin-bottom: 4px;
+  display: block;
+}
+
+@mixin inputErrorMessage() {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  color: $error-color;
+  font-size: 12px;
+}

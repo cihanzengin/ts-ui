@@ -1,0 +1,81 @@
+@import "../../../../assets/styles/entry.scss";
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  align-items: flex-start;
+}
+
+.label {
+  @include inputLabel();
+}
+
+.trigger {
+  width: 100%;
+  position: relative;
+  display: flex;
+  &:before {
+    transition: border-color $speed;
+    width: 0px;
+    height: 0px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid $lightgray;
+    content: "";
+    right: 16px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  &:hover {
+    &:before {
+      border-top: 5px solid rgba($accent, 0.4);
+    }
+  }
+  &.open {
+    &:before {
+      border-top: 0;
+      border-bottom: 5px solid $lightgray;
+    }
+    &:hover {
+      &:before {
+        border-top: 0;
+        border-bottom: 5px solid rgba($accent, 0.4);
+      }
+    }
+  }
+}
+
+.input {
+  width: 100%;
+  border: 1px solid $lightgray;
+  border-radius: $radius-m;
+  height: $ui-height-m;
+  padding: 0 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border $speed;
+  padding-right: 35px;
+  @include text();
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid rgba($accent, 0.4);
+  }
+  &:focus {
+    border: 1px solid $accent;
+  }
+}
+
+.error {
+  .input {
+    border: 1px solid $error-color;
+  }
+}
+
+.errorMessage {
+  @include inputErrorMessage();
+}

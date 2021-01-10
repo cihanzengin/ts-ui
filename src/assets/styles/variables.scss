@@ -1,0 +1,50 @@
+$speed: 0.2s;
+
+// COLORS
+$text-color: rgb(22, 22, 22);
+$white: rgba(#fff, 0.9999);
+$accent: #52666e;
+$lightgray: rgba(#000, 0.15);
+$gray: #f7f7f7;
+$error-color: rgb(233, 35, 28);
+$hover-color: rgba(#eee, 0.3);
+
+// RADIUS SIZES
+$radius-s: 2px;
+$radius-m: 4px;
+$radius-l: 8px;
+
+// BREAKPOINTS
+$xs: 360px;
+$sm: 500px;
+$md: 768px;
+$lg: 1000px;
+$hd: 1280px;
+$xl: 1400px;
+$xxl: 1600px;
+
+$ui-height-s: 34px;
+$ui-height-m: 38px;
+$ui-height-l: 42px;
+
+body {
+  --bg: rgba(255, 255, 255, 0.999);
+  --text-color: rgb(22, 22, 22);
+  --btn-color: rgb(22, 22, 22);
+  --filter-to-white: invert(0);
+
+  transition: background-color $speed, color $speed;
+  background-color: var(--bg);
+  color: var(--text-color);
+}
+
+.dark {
+  --bg: #161616;
+  --text-color: rgba(255, 255, 255, 0.999);
+  --btn-color: rgb(255, 255, 255);
+  --filter-to-white: invert(100%);
+  @media print {
+    --text-color: #161616;
+    --btn-color: #161616;
+  }
+}

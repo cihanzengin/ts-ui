@@ -1,0 +1,6 @@
+@import "./assets/styles/entry.scss";
+
+.wrap {
+  margin-top: 50px;
+  @include wrap();
+}

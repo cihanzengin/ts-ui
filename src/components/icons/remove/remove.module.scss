@@ -1,0 +1,37 @@
+@import "../../../assets/styles/entry.scss";
+
+.wrap {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  padding: 0;
+  display: flex;
+  position: relative;
+  background-color: transparent;
+  @include focus(4px);
+  cursor: pointer;
+  span {
+    width: 12px;
+    height: 2px;
+    background-color: lighten($text-color, 40%);
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 1px;
+    transition: color $speed;
+    &:nth-child(1) {
+      transform: rotate(45deg);
+    }
+    &:nth-child(2) {
+      transform: rotate(-45deg);
+    }
+  }
+  &:hover {
+    span {
+      background-color: $text-color;
+    }
+  }
+}
