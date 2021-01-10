@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Dropdown from "./components/inputs/dropdown";
-import s from "./app.module.scss";
 import DropdownSearch from "./components/inputs/dropdown-search";
 import { InputEvent } from "./constants/types.constants";
+import s from "./app.module.scss";
 
 const options = ["test1", "test2", "test3"];
 
