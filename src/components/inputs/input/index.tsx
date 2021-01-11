@@ -1,11 +1,20 @@
 import React, { forwardRef } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+import { InputEvent } from "../../../constants/types.constants";
 
 import s from './input.module.scss';
 
-const Input = forwardRef(({
-  label, name, error, className, ...props
+interface IInputProps {
+  label?: string;
+  name: string;
+  error?: string;
+  className?: string;
+  placeholder?: string;
+  onChange: (e: InputEvent) => void
+}
+
+const Input = forwardRef<HTMLInputElement, IInputProps>(({
+  label, name, error, className, placeholder, onChange,
 }, ref) => (
   <div className={cn(s.wrap, className, {
     [s.error]: error,
@@ -13,27 +22,15 @@ const Input = forwardRef(({
   >
     {label && <label htmlFor={name} className={s.label}>{label}</label>}
     <input
-      {...props}
       id={name}
       className={s.input}
       name={name}
       ref={ref}
+      placeholder={placeholder}
+      onChange={onChange}
     />
     {error && <span className={s.errorMessage}>{error}</span>}
   </div>
 ));
-
-Input.propTypes = {
-  name: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  label: PropTypes.string,
-  error: PropTypes.string,
-};
-
-Input.defaultProps = {
-  className: '',
-  label: '',
-  error: '',
-};
 
 export default Input;

@@ -4,3 +4,22 @@
   margin-top: 50px;
   @include wrap();
 }
+
+// FIELD TYPES
+.field {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  & + &,
+  & + .labledField {
+    margin-top: 12px;
+  }
+  & + .group {
+    margin-top: 16px;
+  }
+
+  .input:not(:only-child) {
+    width: calc(50% - 10px);
+  }
+}

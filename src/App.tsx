@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Input from "./components/inputs/input";
 import Dropdown from "./components/dropdowns/dropdown";
 import DropdownSearch from "./components/dropdowns/dropdown-search";
 import { InputEvent } from "./constants/types.constants";
@@ -22,31 +23,42 @@ function App() {
   };
 
   const onSearch = (e: InputEvent) => {
-    console.log('koko', e);
-    
-  }
+    console.log("koko", e);
+  };
 
   return (
     <div className={s.wrap}>
-      <Dropdown
-        label="Dropdown"
-        placeholder="Dropdown test placeholder"
-        name="dropdownTest"
-        options={options}
-        selected={selected}
-        isMultiple
-        onSelect={(option) => onSelectMultiple(option)}
-      />
-      {/* <DropdownSearch
-        label="Dropdown search"
-        placeholder="Dropdown test placeholder"
-        name="dropdownSearchTest"
-        options={options}
-        selected={selected}
-        isMultiple
-        onSelect={(option) => onSelectMultiple(option)}
-        onSearch={onSearch}
-      /> */}
+      <div className={s.field}>
+        <Input
+          label="Input"
+          placeholder="Input test placeholder"
+          name="inputTest"
+          onChange={(e: InputEvent) => console.log("koko", e)}
+        />
+      </div>
+      <div className={s.field}>
+        <Dropdown
+          label="Dropdown"
+          placeholder="Dropdown test placeholder"
+          name="dropdownTest"
+          options={options}
+          selected={selected}
+          isMultiple
+          onSelect={(option) => onSelectMultiple(option)}
+        />
+      </div>
+      <div className={s.field}>
+        <DropdownSearch
+          label="Dropdown search"
+          placeholder="Dropdown test placeholder"
+          name="dropdownSearchTest"
+          options={options}
+          selected={selected}
+          isMultiple
+          onSelect={(option) => onSelectMultiple(option)}
+          onSearch={onSearch}
+        />
+      </div>
     </div>
   );
 }
