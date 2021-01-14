@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import s from './textarea.module.scss';
 
-const Textarea = forwardRef(({
+export const Textarea = forwardRef(({
   label, name, error, ...props
 }, ref) => (
   <div className={cn(s.wrap, {
@@ -33,5 +33,3 @@ Textarea.defaultProps = {
   label: '',
   error: '',
 };
-
-export default Textarea;
